@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 enum GraphType{
 	DIR, UNDIR
@@ -34,7 +35,7 @@ abstract class Graph{
 	}
 
 	public abstract void implement_add_edge(int u, int v);
-	
+
 	public List<Integer> get_neighbors(int v){
 		List<Integer> ll = implement_get_neighbors(v);
 		return ll;
@@ -322,5 +323,39 @@ abstract class Graph{
 			}
 			stack.push(v);
 		}
+	}
+
+	public void find_all_paths(int s, int d, Set<Integer> visited, int[] path, int path_index){
+		if(!visited.contains(s)){
+			visit(s);
+			visited.add(s);
+			path[path_index] = s;
+			path_index = path_index + 1;
+			if(s == d){
+				print_path(path, path_index);
+				//path.remove(path.size()-1);
+			}
+			List<Integer> ll = get_neighbors(s);
+			Iterator<Integer> it = ll.iterator();
+			while(it.hasNext()){
+				int u = it.next();
+				find_all_paths(u, d, visited, path, path_index);
+			}
+			visited.remove(s);
+			path_index = path_index-1;
+			//path.remove(path.size()-1);
+		}
+	}
+	
+	public void print_path(int[] path, int path_index){
+		System.out.println("Path:");
+		for(int i=0; i<path_index; i++){
+			System.out.println(path[i] + ",");
+		}
+	}
+
+	public Set<Integer> min_spanning_tree(int root){
+		Set<Integer> mintree = new HashSet<Integer>();
+		return mintree;
 	}
   }

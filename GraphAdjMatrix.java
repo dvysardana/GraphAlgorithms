@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 class GraphAdjMatrix extends Graph{
 
@@ -82,7 +83,7 @@ class GraphAdjMatrix extends Graph{
 
 		
 		/*******Find connected components in a graph******/
-		gu.print_connected_components();
+		//gu.print_connected_components();
 		
 		/***********************/
 		//Check cycle in undirected graph
@@ -104,8 +105,8 @@ class GraphAdjMatrix extends Graph{
 		/**********Check for cycles********************/
 		//The above directed graph has no cycles.
 		//Add the fol. edges one by one as diff. examples of cycle
-		gd.add_edge(0,0);
-		//gd.add_edge(1,0);
+		//gd.add_edge(0,0);
+		gd.add_edge(1,0);
 		
 		//visited = new HashSet<Integer>();
 		//gd.dfs_rec(1, visited);
@@ -114,6 +115,12 @@ class GraphAdjMatrix extends Graph{
 		Set<Integer> recactive = new HashSet<Integer>();
 		//cycle = gd.check_cycle_dir(0, visited, recactive);
 		//System.out.println("Graph has a cycle? (True/False)" + cycle);
+	
+		/********Find all paths in DAG*************/
+		visited = new HashSet<Integer>();
+		int[] path = new int[gd.V];
+		int path_index = 0;
+		gd.find_all_paths(0,2,visited, path, path_index);
 	}
 
 

@@ -7,6 +7,7 @@ import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 class GraphAdjList extends Graph{
 	Map<Integer, List<Integer>> adjListMap = null;
@@ -63,7 +64,7 @@ class GraphAdjList extends Graph{
 		gu.add_edge(1, 2);
 		gu.add_edge(1, 4);
 		gu.add_edge(1, 3);
-		gu.add_edge(3, 4);
+		//gu.add_edge(3, 4);
 		gu.add_edge(2, 5);
 		gu.add_edge(5, 6);
 		gu.add_edge(7,8);
@@ -95,9 +96,12 @@ class GraphAdjList extends Graph{
 
 		/********Check if a graph has cycle***********/
 		boolean cycle = false;
-		//cycle = gu.check_cycle_undir(1, visited, -1);
-		//System.out.println("Graph has cycles? (True/False):" + cycle);
-
+		cycle = gu.check_cycle_undir(1, visited, -1);
+		System.out.println("Graph has cycles? (True/False):" + cycle);
+		visited = new HashSet<Integer>();
+		Set<Integer> recactive = new HashSet<Integer>();
+		cycle = gu.check_cycle_dir(1, visited, recactive);
+		System.out.println("Graph has cycles? (True/False):" + cycle);
 		/***********************************/
 		/*********Directed Graph************/
 		/***********************************/
@@ -107,8 +111,8 @@ class GraphAdjList extends Graph{
 		gd.add_edge(1,3);
 		gd.add_edge(2,4);
 		gd.add_edge(4,5);
-		gd.add_edge(5,1);
-		
+		gd.add_edge(3,5);
+
 		/**********Check for cycles********************/
 		//The above directed graph has no cycles.
 		//Add the fol. edges one by one as diff. examples of cycle
@@ -119,7 +123,7 @@ class GraphAdjList extends Graph{
 		//gd.dfs_rec(1, visited);
 
 		visited = new HashSet<Integer>();
-		Set<Integer> recactive = new HashSet<Integer>();
+		//Set<Integer> recactive = new HashSet<Integer>();
 		//cycle = gd.check_cycle_dir(1, visited, recactive);
 		//System.out.println("Graph has a cycle? (True/False)" + cycle);
 	
@@ -129,12 +133,20 @@ class GraphAdjList extends Graph{
 		
 		visited = new HashSet<Integer>();
 		Deque<Integer> stack = new ArrayDeque<Integer>();
-		gd.top_sort(1, visited, stack);
-		System.out.println("Topological sort");
-		while(!stack.isEmpty()){
-			int w = stack.pop();
-			System.out.println(w);
-		}
+		//gd.top_sort(1, visited, stack);
+		//System.out.println("Topological sort");
+		//while(!stack.isEmpty()){
+		//	int w = stack.pop();
+		//	System.out.println(w);
+		//}
+
+
+		 /********Find all paths in DAG*************/
+		 visited = new HashSet<Integer>();
+		 int[] path = new int[gd.V];
+		 int path_index = 0;
+		 //gd.find_all_paths(1,5,visited, path, path_index);
+
 	}
 
 	
