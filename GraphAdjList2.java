@@ -105,12 +105,7 @@ class GraphAdjList2<T> extends Graph2<T>{
 		gd.add_edge(3, 3, 4, 4, 4);
 		gd.add_edge(2, 2, 4, 4, 3);
 
-		/**********Check for cycles********************/
-		//The above directed graph has no cycles.
-		//Add the fol. edges one by one as diff. examples of cycle
-		//gd.add_edge(1,1);
-		//gd.add_edge(2,1);
-		
+	        //Traverse graph	
 		v1 = gd.add_vertex(0, 0);
 		//gd.dfs_rec(v1);
 
