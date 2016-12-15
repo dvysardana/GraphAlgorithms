@@ -1,2 +1,2 @@
 # GraphAlgorithms
-Implementation of Graph Algoritms in Java.
+Implementation of Graph Algorithms in Java.
