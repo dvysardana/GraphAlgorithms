@@ -122,5 +122,46 @@ abstract class Graph2<T>{
 		
 		//return mintree;
 	}
-  
+ 
+	//Complexity
+	//O(V*Extractmin + E*DecreaseKey)
+	//=O(VlogV + ElogV),
+	//Using Fibonnaci heap: O(VlogV + E)
+	public void dijkstra_shortest_path(Vertex<T> s){
+	
+		//A priority queue to hold all vertices in decreasing order of key
+		//key is the distance estimate from source for each vertex.
+		//Initially, it is = Integer.MAX_VALUE for each vertex.
+		Queue<Vertex<T>> q = new PriorityQueue<Vertex<T>>();
+
+		//Set source vertex's key to 0;
+		s.set_key(0);
+
+		//Add all vertices to q
+		Set<Vertex<T>> vertices = get_vertices();
+		for(Vertex<T> v: vertices){
+			q.offer(v);
+		}			
+
+		while(!q.isEmpty()){
+			//Add u to shortest path
+			Vertex<T> u = q.poll();
+		
+			//Relax all adjacent edges for u.
+			List<Edge<T>> elist = u.get_edge_list();
+			Iterator<Edge<T>> it = elist.iterator();
+			while(it.hasNext()){
+			
+				Edge<T> e = it.next();
+				Vertex<T> w = e.get_to();
+				if(w.get_key() > (u.get_key() + e.get_weight())){
+					w.set_key(u.get_key() + e.get_weight());
+					w.set_parent(u);
+				}		
+			}		
+		}	
+
+
+	}
+
   }

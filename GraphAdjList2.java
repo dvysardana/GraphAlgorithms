@@ -81,14 +81,14 @@ class GraphAdjList2<T> extends Graph2<T>{
 		//gu.dfs_rec(v1);
 		
 		/****Prim's algorithm (Min Spanning Tree)******/
-		gu.min_spanning_tree(v1);
+		//gu.min_spanning_tree(v1);
 		
 		//Print the min spanning tree
-		System.out.println("Printing the minimum spanning tree (Vertex, parent).");
-		for(Vertex<Integer> v: gu.get_vertices()){
-			System.out.print(v + ",");
-			System.out.println(v.get_parent() + ";");
-		}
+		//System.out.println("Printing the minimum spanning tree (Vertex, parent).");
+		//for(Vertex<Integer> v: gu.get_vertices()){
+		//	System.out.print(v + ",");
+		//	System.out.println(v.get_parent() + ";");
+		//}
 
 
 		/***********************************/
@@ -109,7 +109,14 @@ class GraphAdjList2<T> extends Graph2<T>{
 		v1 = gd.add_vertex(0, 0);
 		//gd.dfs_rec(v1);
 
-			
+		/*********Dijkstra's shortest path algorithm*****/
+		System.out.println("Dijkstra's shortest path (vertex, key, parent)");
+		gd.dijkstra_shortest_path(v1);
+		for(Vertex<Integer> v: gd.get_vertices()){
+			System.out.print(v + ",");
+			System.out.print(v.get_key() + ",");
+			System.out.println(v.get_parent());
+		}
 	}
 
 	
